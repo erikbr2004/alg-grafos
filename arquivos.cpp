@@ -18,25 +18,22 @@ void carregarArestasDeArquivo(Grafo& grafo, const std::string& nomeArquivo)
     }
 
     std::string linha;
-	while (std::getline(arquivo, linha)) // Lê cada linha do arquivo
+	while (std::getline(arquivo, linha))
     {
-		std::istringstream iss(linha); // Cria um stream de string para ler a linha
+		std::istringstream iss(linha);
         std::string origem, destino;
 
-        // Ler os vértices de origem e destino da linha
         if (!(iss >> origem >> destino))
         {
             std::cerr << "Erro ao ler linha: " << linha << std::endl;
             continue;
         }
 
-		// Verifica se não é uma linha nula
         if (origem == "-" || destino == "-")
 			continue;
 
-		toLowerString(origem, destino); // Converte os vértices para minúsculas
+		toLowerString(origem, destino);
 
-		// Adiciona a aresta ao grafo
         grafo.adicionarAresta(origem, destino);
     }
 

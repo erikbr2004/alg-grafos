@@ -20,7 +20,7 @@ const void Grafo::exibirGrafo()
 
 const void Grafo::existeVertices()
 {
-	std::cout << "Vértices do grafo:" << std::endl;
+	std::cout << "Vï¿½rtices do grafo:" << std::endl;
 	for (const auto& par : adjacencia)
 		std::cout << par.first << std::endl;
 }
@@ -47,7 +47,6 @@ const void Grafo::exportarGrafoParaArquivo()
 		return;
 	}
 
-	// Escreve os vértices e arestas no arquivo
 	for (const auto& par : adjacencia)
 	{
 		const std::string& vertice = par.first;
@@ -68,7 +67,6 @@ const void Grafo::mapaToMatrixAdj()
         return;
     }
     
-    // Mapeia vértices para índices
     std::map<std::string, int> mapaVertices;
     std::vector<std::string> listaVertices;
     std::vector<std::vector<int>> matrizAdj;
@@ -88,15 +86,12 @@ const void Grafo::mapaToMatrixAdj()
         }
     }
     
-    // Inicializa a matriz de adjacência
     int tamanho = (int)listaVertices.size();
     matrizAdj.resize(tamanho, std::vector<int>(tamanho, 0));
     
-    // Reposiciona o cursor do arquivo para o início
     arquivo.clear();
     arquivo.seekg(0, std::ios::beg);
     
-    // Preenche a matriz de adjacência
     while (arquivo >> origem >> destino)
     {
         int i = mapaVertices[origem];
@@ -108,7 +103,6 @@ const void Grafo::mapaToMatrixAdj()
     
     arquivo.close();
     
-    // Exibe a matriz de adjacência
     std::cout << "Matriz de Adjacencia:" << std::endl;
     for (const auto& linha : matrizAdj)
     {
@@ -128,7 +122,6 @@ const void Grafo::mapaToMatrixIncid()
         return;
     }
 
-    // Mapeia vértices para índices
     std::map<std::string, int> mapaVertices;
     std::vector<std::string> listaVertices;
     std::vector<std::pair<std::string, std::string>> listaArestas;
@@ -150,12 +143,10 @@ const void Grafo::mapaToMatrixIncid()
         listaArestas.emplace_back(origem, destino);
     }
 
-    // Inicializa a matriz de incidência
     int numVertices = (int)listaVertices.size();
     int numArestas = (int)listaArestas.size();
     matrizIncid.resize(numVertices, std::vector<int>(numArestas, 0));
 
-    // Preenche a matriz de incidência
     for (int k = 0; k < numArestas; ++k)
     {
         const auto& aresta = listaArestas[k];
@@ -176,7 +167,6 @@ const void Grafo::mapaToMatrixIncid()
 
     arquivo.close();
 
-    // Exibe a matriz de incidência
     std::cout << "Matriz de Incidencia:" << std::endl;
     unsigned int cont = 0;
     for (const auto& linha : matrizIncid)
@@ -265,7 +255,6 @@ const void Grafo::buscaEmProfundidade(const std::string& verticeInicial)
 
 const std::map<std::string, std::set<std::string>> Grafo::componentesFortementeConexos()
 {
-	// Implementação do algoritmo de Kosaraju para encontrar componentes fortemente conexos
 	std::map<std::string, std::set<std::string>> grafoTransposto;
 	for (const auto& par : adjacencia)
 	{

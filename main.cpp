@@ -6,7 +6,7 @@ int main()
 
 	Grafo grafo;
 	carregarArestasDeArquivo(grafo, "arestas.txt");
-	grafo.exibirGrafo();  // Exibe o grafo atraves de uma lista de adjacencia
+	grafo.exibirGrafo();
 
 	std::cout << std::endl;
 
